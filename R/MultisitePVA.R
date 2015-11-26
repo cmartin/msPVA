@@ -14,7 +14,7 @@
 #' @return A list-based S3 object of class \code{PVARes} containing elements CDFExt, lam0, logLam and stochLam.
 #' @export
 #' @examples
-#' simulate_pva(
+#' res <- simulate_pva(
 #'  leaving_prob = 0.2,
 #'  reaching_prob = 0.5,
 #'  growth_rate_means = c(0.043, -0.002, 0),
@@ -29,8 +29,14 @@
 #'    byrow = TRUE
 #'  )},
 #'  K = c(286, 60, 58),
-#'  quasi_extinction_thresholds = c(20, 20, 20)
+#'  quasi_extinction_thresholds = c(20, 20, 20),
+#'  n_years = 50,
+#'  n_runs = 100
 #' )
+#'
+#' print(res)
+#' hist(res)
+#' plot(res)
 simulate_pva <- function(
   n_years = 100,
   n_runs = 1000,
@@ -213,7 +219,9 @@ hist.PVARes <- function(x, ...) {
 #'      K = c(300,200),
 #'      leaving_prob = 0.1,
 #'      reaching_prob = 0.7,
-#'      quasi_extinction_thresholds = c(20, 20)
+#'      quasi_extinction_thresholds = c(20, 20),
+#'      n_years = 50,
+#'      n_runs = 100
 #'    )
 #'  )
 #' )

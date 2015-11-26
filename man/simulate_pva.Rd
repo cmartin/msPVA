@@ -36,7 +36,7 @@ A list-based S3 object of class \code{PVARes} containing elements CDFExt, lam0, 
 See Morris & Doak 2002, p. 423-431
 }
 \examples{
-simulate_pva(
+res <- simulate_pva(
  leaving_prob = 0.2,
  reaching_prob = 0.5,
  growth_rate_means = c(0.043, -0.002, 0),
@@ -51,7 +51,13 @@ simulate_pva(
    byrow = TRUE
  )},
  K = c(286, 60, 58),
- quasi_extinction_thresholds = c(20, 20, 20)
+ quasi_extinction_thresholds = c(20, 20, 20),
+ n_years = 50,
+ n_runs = 100
 )
+
+print(res)
+hist(res)
+plot(res)
 }
 

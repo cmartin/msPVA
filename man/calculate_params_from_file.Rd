@@ -40,7 +40,9 @@ do.call(
      K = c(300,200),
      leaving_prob = 0.1,
      reaching_prob = 0.7,
-     quasi_extinction_thresholds = c(20, 20)
+     quasi_extinction_thresholds = c(20, 20),
+     n_years = 50,
+     n_runs = 100
    )
  )
 )
