@@ -1,10 +1,14 @@
 Package: PopulationViabilityAnalysis
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1
+Title: Population Viability Analysis
+Description: Implements a stochastic simulation for a count-based multi-site population viability analysis.
+Version: 0.0.0.9000
 Date: 2015-11-26
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Charles", "Martin", middle="A.", email = "charles.martin1@uqtr.ca",
+                  role = c("aut", "cre"))
+License: GPL-3
 LazyData: TRUE
+Imports: utils
+Depends: R (>= 3.0.2)
+URL: https://github.com/cmartin/PopulationViabilityAnalysis
+BugReports: https://github.com/cmartin/PopulationViabilityAnalysis/issues
