@@ -60,7 +60,7 @@ With a two-populations polar bear time series from [Stirling et al. 2004](http:/
 params <- calculate_params_from_file(
  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
 )
-do.call(
+res <- do.call(
  "simulate_pva",
  c(
    params,
