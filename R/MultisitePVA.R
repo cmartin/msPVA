@@ -290,9 +290,14 @@ calculate_params_from_file <- function(data_file) {
 
 }
 
-
-
-simulate_ss_pva <- function(lambdas, initial_pop, n_years = 100, n_runs = 1000, K = NA) {
+#' @export
+simulate_ss_pva <- function(
+  lambdas,
+  initial_pop,
+  n_years = 100,
+  n_runs = 1000,
+  K = NA
+) {
 
   results = c()
 
@@ -317,4 +322,15 @@ simulate_ss_pva <- function(lambdas, initial_pop, n_years = 100, n_runs = 1000, 
   class(ss) <- "ssPVARes"
   return(ss)
 
+}
+
+#' @export
+print.ssPVARes <- function(x, ...) {
+  cat(paste('Over a', x$n_years, 'years span, the extinction risk of this population is', x$extinction_risk))
+  cat(paste('\r\nAnd the risk of decline is', x$decline_risk))
+}
+
+#' @export
+hist.ssPVARes <- function(x, ...) {
+  hist(res$final_pops, xlab = "Population size", main = paste("Population size at the end of", res$n_runs, "simulations"))
 }

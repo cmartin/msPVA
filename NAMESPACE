@@ -3,5 +3,7 @@
 S3method(hist,msPVARes)
 S3method(plot,msPVARes)
 S3method(print,msPVARes)
+S3method(print,ssPVARes)
 export(calculate_params_from_file)
 export(simulate_ms_pva)
+export(simulate_ss_pva)
