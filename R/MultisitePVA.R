@@ -306,6 +306,9 @@ simulate_ss_pva <- function(
     for (year in 1:n_years) {
       population = population*sample(lambdas,1)
       population = floor(population)
+      if (!(is.na(K))  && (population > K)) population <- min(population,K)
+
+
     }
     results = append(results,population)
   }

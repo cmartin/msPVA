@@ -105,14 +105,55 @@ test_that("Our results agree with the old R code for single-site simulations",{
   expect_equal(
     res$decline_risk,
     c(0.49566),
-    tolerance = .03
+    tolerance = .04
   )
 
   attributes(res$extinction_risk) <- NULL
   expect_equal(
     res$extinction_risk,
     c(0.24153),
-    tolerance = .03
+    tolerance = .04
   )
 
+})
+
+test_that("K is correctly accounted for in single-site simulations",{
+  res <- simulate_ss_pva(
+    lambdas = c(
+      0.808510638,
+      0.828947368,
+      1,
+      1.047619048,
+      0.833333333,
+      1.777777778
+    ),
+    initial_pop = 136,
+    n_years = 100,
+    n_runs = 2000,
+    K = 200
+  )
+
+  expect_lte(
+    max(res$final_pops),
+    200
+  )
+
+  res <- simulate_ss_pva(
+    lambdas = c(
+      0.808510638,
+      0.828947368,
+      1,
+      1.047619048,
+      0.833333333,
+      1.777777778
+    ),
+    initial_pop = 136,
+    n_years = 100,
+    n_runs = 2000
+  )
+
+  expect_gte(
+    max(res$final_pops),
+    200
+  )
 })
