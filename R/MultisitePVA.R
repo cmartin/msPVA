@@ -11,7 +11,7 @@
 #' @param initial_pops A vector of initial population sizes.
 #' @param K A vector of maximum numbers in each pop. (carrying capacity)
 #' @param quasi_extinction_thresholds A vector of near extinction threshold for each pops.
-#' @return A list-based S3 object of class \code{PVARes} containing elements CDFExt, lam0, logLam and stochLam.
+#' @return A list-based S3 object of class \code{msPVARes} containing elements CDFExt, lam0, logLam and stochLam.
 #' @export
 #' @examples
 #' res <- simulate_ms_pva(
@@ -153,7 +153,7 @@ simulate_ms_pva <- function(
     logLam = logLam,
     stochLam = stochLam
   )
-  class(l) <- append(class(l),"PVARes")
+  class(l) <- append(class(l),"msPVARes")
   return(l)
 
 }
@@ -165,7 +165,7 @@ simulate_ms_pva <- function(
 }
 
 #' @export
-print.PVARes <- function(x, ...) {
+print.msPVARes <- function(x, ...) {
     cat(paste('This is the deterministic lambda value : ', x$lam0))
     cat(paste('\r\nAnd this is the mean stochastic lambda : ', mean(x$stochLam)))
     cat('\r\nBelow is mean and standard deviation of log lambda :\r\n')
@@ -173,7 +173,7 @@ print.PVARes <- function(x, ...) {
 }
 
 #' @export
-plot.PVARes <- function(x, ...) {
+plot.msPVARes <- function(x, ...) {
   plot(
     x$CDFExt,
     main = "Extinction time CDF",
@@ -184,7 +184,7 @@ plot.PVARes <- function(x, ...) {
 }
 
 #' @export
-hist.PVARes <- function(x, ...) {
+hist.msPVARes <- function(x, ...) {
   hist(x$logLam, main = "logLams")
 }
 

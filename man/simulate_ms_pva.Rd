@@ -30,7 +30,7 @@ simulate_ms_pva(n_years = 100, n_runs = 1000, leaving_prob = 0,
 \item{quasi_extinction_thresholds}{A vector of near extinction threshold for each pops.}
 }
 \value{
-A list-based S3 object of class \code{PVARes} containing elements CDFExt, lam0, logLam and stochLam.
+A list-based S3 object of class \code{msPVARes} containing elements CDFExt, lam0, logLam and stochLam.
 }
 \description{
 See Morris & Doak 2002, p. 423-431
