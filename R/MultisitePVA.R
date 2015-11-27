@@ -209,7 +209,7 @@ hist.PVARes <- function(x, ...) {
 #' @export
 #' @examples
 #' params <- calculate_params_from_file(
-#'  system.file("extdata", "PolarBear_Stirling2004.csv", package = "PopulationViabilityAnalysis")
+#'  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
 #' )
 #' do.call(
 #'  "simulate_pva",

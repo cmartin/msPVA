@@ -1,4 +1,4 @@
 library(testthat)
-library(PopulationViabilityAnalysis)
+library(msPVA)
 
-test_check("PopulationViabilityAnalysis")
+test_check("msPVA")

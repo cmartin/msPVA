@@ -1,9 +1,9 @@
 Package: msPVA
 Type: Package
 Title: Count-Based Multi-Site Population Viability Analysis
-Description: Implements a stochastic simulation for a count-based multi-site population viability analysis.
-Version: 0.0.0.9000
-Date: 2015-11-26
+Description: Implements a stochastic simulation for a count-based multi-site population viability analysis as described in chapter 11 of Quantitative Conservation Ecology (Morris & Doak, 2002).
+Version: 0.0.0.9001
+Date: 2015-11-27
 Authors@R: person("Charles", "Martin", middle="A.", email = "charles.martin1@uqtr.ca",
                   role = c("aut", "cre"))
 License: GPL-3
