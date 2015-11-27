@@ -29,7 +29,7 @@ With the same Clapper rail data as in Morris & Doak
 
 ### Definining parameters manually : 
 ```{r}
-res <- simulate_pva(
+res <- simulate_ms_pva(
  leaving_prob = 0.2,
  reaching_prob = 0.5,
  growth_rate_means = c(0.043, -0.002, 0),
@@ -61,7 +61,7 @@ params <- calculate_params_from_file(
  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
 )
 res <- do.call(
- "simulate_pva",
+ "simulate_ms_pva",
  c(
    params,
    list(

@@ -11,7 +11,7 @@ calculate_params_from_file(data_file)
 }
 \value{
 A \code{list} containing initial_pops, growth_rate_corrs,
-growth_rate_means and growth_rate_vars parameters. Please see \link{simulate_pva} for a description of each parameter
+growth_rate_means and growth_rate_vars parameters. Please see \link{simulate_ms_pva} for a description of each parameter
 }
 \description{
 This function expects a n_pop+1 columns layout with column headers as the first line.
@@ -33,7 +33,7 @@ params <- calculate_params_from_file(
  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
 )
 do.call(
- "simulate_pva",
+ "simulate_ms_pva",
  c(
    params,
    list(

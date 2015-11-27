@@ -14,7 +14,7 @@
 #' @return A list-based S3 object of class \code{PVARes} containing elements CDFExt, lam0, logLam and stochLam.
 #' @export
 #' @examples
-#' res <- simulate_pva(
+#' res <- simulate_ms_pva(
 #'  leaving_prob = 0.2,
 #'  reaching_prob = 0.5,
 #'  growth_rate_means = c(0.043, -0.002, 0),
@@ -37,7 +37,7 @@
 #' print(res)
 #' hist(res)
 #' plot(res)
-simulate_pva <- function(
+simulate_ms_pva <- function(
   n_years = 100,
   n_runs = 1000,
   leaving_prob = 0,
@@ -205,14 +205,14 @@ hist.PVARes <- function(x, ...) {
 #'
 #' @param data_file The path to the file
 #' @return A \code{list} containing initial_pops, growth_rate_corrs,
-#' growth_rate_means and growth_rate_vars parameters. Please see \link{simulate_pva} for a description of each parameter
+#' growth_rate_means and growth_rate_vars parameters. Please see \link{simulate_ms_pva} for a description of each parameter
 #' @export
 #' @examples
 #' params <- calculate_params_from_file(
 #'  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
 #' )
 #' do.call(
-#'  "simulate_pva",
+#'  "simulate_ms_pva",
 #'  c(
 #'    params,
 #'    list(

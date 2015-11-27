@@ -1,6 +1,6 @@
 context("Verifying agreement with the MatLab code")
 
-res <- simulate_pva(
+res <- simulate_ms_pva(
  leaving_prob = 0.2,
  reaching_prob = 0.5,
  growth_rate_means = c(0.043, -0.002, 0),
