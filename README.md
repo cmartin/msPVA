@@ -16,7 +16,7 @@ library(msPVA)
 ```
 
 ### Or you download the source file and run it directly
-In this case, you need the raw R file at : https://raw.githubusercontent.com/cmartin/msPVA/master/R/MultisitePVA.R
+In this case, you need download [the raw R file](https://raw.githubusercontent.com/cmartin/msPVA/master/R/MultisitePVA.R)
 and then execute : 
 ```{r}
 source("MultisitePVA.R")
@@ -24,6 +24,8 @@ source("MultisitePVA.R")
 This is a quicker, but dirtier way!
 
 ## Try some examples
+
+With the same Clapper rail data as in Morris & Doak
 
 ### Definining parameters manually : 
 ```{r}
@@ -53,6 +55,7 @@ plot(res)
 ```
 
 ### Or ask the package to calculate most of them automatically from a time-series : 
+With a two-populations polar bear time series from [Stirling et al. 2004](http://arctic.journalhosting.ucalgary.ca/arctic/index.php/arctic/article/view/479/509)
 ```{r}
 params <- calculate_params_from_file(
  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
@@ -79,9 +82,10 @@ plot(res)
 ## Read the book
 If you are to use this package, I highly recommend that you first read chapter 11 from [Quantitative Conservation Ecology (Morris & Doak, 2002)](http://www.sinauer.com/quantitative-conservation-biology-theory-and-practice-of-population-viability-analysis.html), so you understand limitations and assumptions from the underlying model. Managing animal populations should not be taken lightly.
 
-## Problems : 
+## Problems
 Please report any bugs to the [GitHub issue tracker](https://github.com/cmartin/msPVA/issues) and write any questions to <charles.martin1@uqtr.ca>
 
-## If this code is useful to you, please cite as : 
+## Citation
+If this code is useful to you, please cite as : 
 Charles A. Martin (2015). msPVA: Count-Based Multi-Site Population Viability Analysis. R package
   version 0.0.0.9001.
