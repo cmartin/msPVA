@@ -45,8 +45,8 @@ res <- simulate_pva(
  )},
  K = c(286, 60, 58),
  quasi_extinction_thresholds = c(20, 20, 20),
- n_years = 50,
- n_runs = 100
+ n_years = 100,
+ n_runs = 1000
 )
 
 print(res)
@@ -69,8 +69,8 @@ do.call(
      leaving_prob = 0.1,
      reaching_prob = 0.7,
      quasi_extinction_thresholds = c(20, 20),
-     n_years = 50,
-     n_runs = 100
+     n_years = 100,
+     n_runs = 1000
    )
  )
 )
