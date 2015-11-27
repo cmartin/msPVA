@@ -5,8 +5,9 @@
 \title{Run a stochastic simulation for a count-based multi-site population viability analysis}
 \usage{
 simulate_ms_pva(n_years = 100, n_runs = 1000, leaving_prob = 0,
-  reaching_prob = 1, growth_rate_means, growth_rate_vars, initial_pops,
-  growth_rate_corrs, K, quasi_extinction_thresholds)
+  reaching_prob = 1, with_progress_bar = TRUE, growth_rate_means,
+  growth_rate_vars, initial_pops, growth_rate_corrs, K,
+  quasi_extinction_thresholds)
 }
 \arguments{
 \item{n_years}{A number. How many years should we simulate?}

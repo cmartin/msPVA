@@ -17,7 +17,7 @@ res <- simulate_ms_pva(
  with_progress_bar = FALSE
 )
 
-test_that("Verifying agreement with the MatLab code for Multi-site code",{
+test_that("Our results agree with the MatLab code for Multi-site code",{
 
   expect_equal(
     res$lam0,
@@ -46,7 +46,7 @@ test_that("Verifying agreement with the MatLab code for Multi-site code",{
 
 })
 
-test_that("Parameter loading from file",{
+test_that("Parameters are correctly loading from a file",{
 
   expect_warning(
     params <- calculate_params_from_file(
@@ -80,6 +80,39 @@ test_that("Parameter loading from file",{
     params$growth_rate_vars,
     c(0.1292640, 0.1639641),
     tolerance = .0001
+  )
+
+})
+
+test_that("Our results agree with the old R code for single-site simulations",{
+  # Old R code was run for 10 000 iterations
+
+  res <- simulate_ss_pva(
+    lambdas = c(
+      0.808510638,
+      0.828947368,
+      1,
+      1.047619048,
+      0.833333333,
+      1.777777778
+    ),
+    initial_pop = 136,
+    n_years = 100,
+    n_runs = 2000
+  )
+
+  attributes(res$decline_risk) <- NULL
+  expect_equal(
+    res$decline_risk,
+    c(0.49566),
+    tolerance = .03
+  )
+
+  attributes(res$extinction_risk) <- NULL
+  expect_equal(
+    res$extinction_risk,
+    c(0.24153),
+    tolerance = .03
   )
 
 })

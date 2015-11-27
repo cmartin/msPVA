@@ -42,6 +42,7 @@ simulate_ms_pva <- function(
   n_runs = 1000,
   leaving_prob = 0,
   reaching_prob = 1,
+  with_progress_bar = TRUE,
   growth_rate_means,
   growth_rate_vars,
   initial_pops,
@@ -104,20 +105,24 @@ simulate_ms_pva <- function(
   logLam = rep(0, n_runs) # tracker of stoch-log-lambda values
   stochLam = rep(0, n_runs) # tracker of stochastic lambda values
 
-  pb <- utils::txtProgressBar(
-    min = 0,
-    max = n_runs,
-    initial = 0,
-    char = "=",
-    width = 75,
-    style = 3
-  )
+  if (with_progress_bar) {
+    pb <- utils::txtProgressBar(
+      min = 0,
+      max = n_runs,
+      initial = 0,
+      char = "=",
+      width = 75,
+      style = 3
+    )
+  }
 
   ################# SIMULATION LOOPS ###################
 
   for (xx in 1:n_runs) {
 
-    utils::setTxtProgressBar(pb, xx)
+    if (with_progress_bar) {
+      utils::setTxtProgressBar(pb, xx)
+    }
 
     nt <- initial_pops; # start at initial population size vector
     extinct <- rep(0, n_pops) # vector of extinction recorders
@@ -282,5 +287,34 @@ calculate_params_from_file <- function(data_file) {
     growth_rate_vars = growth_rate_vars
   )
 
+
+}
+
+
+
+simulate_ss_pva <- function(lambdas, initial_pop, n_years = 100, n_runs = 1000, K = NA) {
+
+  results = c()
+
+  for (iteration in 1:n_runs) {
+    population = initial_pop
+    for (year in 1:n_years) {
+      population = population*sample(lambdas,1)
+      population = floor(population)
+    }
+    results = append(results,population)
+  }
+
+  ss <- list(
+    final_pops = results,
+    n_years = n_years,
+    n_runs = n_runs,
+    initial_pop = initial_pop,
+    decline_risk = sum(results < initial_pop) / n_runs,
+    extinction_risk = sum(results <= 0) / n_runs
+  )
+
+  class(ss) <- "ssPVARes"
+  return(ss)
 
 }
