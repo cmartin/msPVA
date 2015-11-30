@@ -293,20 +293,50 @@ calculate_params_from_file <- function(data_file) {
 #' @export
 simulate_ss_pva <- function(
   lambdas,
+  log_lambdas,
+  growth_rate_means,
+  growth_rate_vars = 0 ,
   initial_pop,
   n_years = 100,
   n_runs = 1000,
-  K = NA
+  K = NA,
+  quasi_extinction_thresholds = 0
 ) {
+
+  if (sum(
+    missing(lambdas),
+    missing(log_lambdas),
+    missing(growth_rate_means)
+  ) != 2) {
+    stop("You must provide either lambdas, log-lambdas or growth-rate means and variances, but only one of them")
+  }
+
+  if (missing(lambdas)) {
+    method = 'stochastic'
+  } else {
+    method = 'bootstrap'
+  }
 
   results = c()
 
   for (iteration in 1:n_runs) {
     population = initial_pop
     for (year in 1:n_years) {
-      population = population*sample(lambdas,1)
+      if (method == 'bootstrap') {
+        population = population*sample(lambdas,1)
+      } else {
+        population <- population * exp(rnorm(n = 1, mean = growth_rate_means, sd = sqrt(growth_rate_vars)))
+      }
+
       population = floor(population)
+
       if (!(is.na(K))  && (population > K)) population <- min(population,K)
+
+      # If population goes extinct, go to next iteration (it cannot get better...)
+      if (population < quasi_extinction_thresholds) {
+        break;
+      }
+
 
 
     }
@@ -319,7 +349,7 @@ simulate_ss_pva <- function(
     n_runs = n_runs,
     initial_pop = initial_pop,
     decline_risk = sum(results < initial_pop) / n_runs,
-    extinction_risk = sum(results <= 0) / n_runs
+    extinction_risk = sum(results <= quasi_extinction_thresholds) / n_runs
   )
 
   class(ss) <- "ssPVARes"

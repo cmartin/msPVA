@@ -98,14 +98,14 @@ test_that("Our results agree with the old R code for single-site simulations",{
     ),
     initial_pop = 136,
     n_years = 100,
-    n_runs = 2000
+    n_runs = 3000
   )
 
   attributes(res$decline_risk) <- NULL
   expect_equal(
     res$decline_risk,
     c(0.49566),
-    tolerance = .04
+    tolerance = .05
   )
 
   attributes(res$extinction_risk) <- NULL
@@ -156,4 +156,44 @@ test_that("K is correctly accounted for in single-site simulations",{
     max(res$final_pops),
     200
   )
+})
+
+test_that("The multiple ways of calling simulate_ss_pva are correctly verified",{
+
+  expect_error(
+    res <- simulate_ss_pva(
+      initial_pop = 20
+    )
+  )
+
+  expect_error(
+    res <- simulate_ss_pva(
+      initial_pop = 20,
+      lambdas = c(1,2,3),
+      log_lambdas = c(1,2,3)
+    )
+  )
+
+})
+
+test_that("Stochastic model for a single population",{
+
+  res <- simulate_ss_pva(
+    growth_rate_means = 0.015,
+    growth_rate_vars = .041,
+    initial_pop = 26,
+    quasi_extinction_thresholds = 20,
+    n_years = 50,
+    n_runs = 1000
+  )
+
+  # popbio returns 0.7624 for this :
+  # max(ex<-extCDF(0.015, 0.041, Nc=26, Ne=20))
+
+  expect_equal(
+    res$extinction_risk,
+    0.7624,
+    tolerance = .03
+  )
+
 })
