@@ -290,18 +290,44 @@ calculate_params_from_file <- function(data_file) {
 
 }
 
+#' Run a stochastic simulation for a count-based single-site population viability analysis
+#'
+#' This function uses either a stochastic algorithm if log-lambdas or mean log-lambdas and variance
+#' are provided, or a bootstrap method if lambdas are provided directly.
+#'
+#' This function is not yet vectorized, so provided a single population per run.
+#'
+#' @param lambdas A vector. Yearly growth rates
+#' @param log_lambdas A vector. log(lambdas) calculated as in Morris & Doak 2002, p.64-65
+#' @param growth_rate_means,growth_rate_vars Numbers. Mean and variance of log(lambdas)
+#' @param n_years A number. How many years should we simulate?
+#' @param n_runs A number. How many simulations should we do?
+#' @param initial_pops Number. Initial population sizes.
+#' @param K A number. Maximum population size (carrying capacity).
+#' @param quasi_extinction_thresholds A number. Near extinction threshold for the population.
+#' @return A list-based S3 object of class \code{ssPVARes} containing elements final_pops (vector), n_years, n_runs, initial_pops, decline_risk and extinction_risk.
+#' @export
+#' @examples
+#' res <- simulate_ss_pva(
+#'  growth_rate_means = 0.043,
+#'  growth_rate_vars = 0.051,
+#'  initial_pops = 70,
+#'  K = 286,
+#'  quasi_extinction_thresholds = 20,
+#'  n_years = 50,
+#'  n_runs = 100
+#' )
+#'
+#' print(res)
+#' hist(res)
 #' @export
 simulate_ss_pva <- function(
-  initial_pop,
+  initial_pops,
   n_years = 100,
   n_runs = 1000,
   K = NA,
   quasi_extinction_thresholds = 0,
   ...
-#   lambdas = NULL,
-#   log_lambdas = NULL,
-#   growth_rate_means = NULL
-
 ) {
 
   args = list(...)
@@ -337,7 +363,7 @@ simulate_ss_pva <- function(
   results = c()
 
   for (iteration in 1:n_runs) {
-    population = initial_pop
+    population = initial_pops
     for (year in 1:n_years) {
       if (method == 'bootstrap') {
         population = population*sample(lambdas,1)
@@ -364,8 +390,8 @@ simulate_ss_pva <- function(
     final_pops = results,
     n_years = n_years,
     n_runs = n_runs,
-    initial_pop = initial_pop,
-    decline_risk = sum(results < initial_pop) / n_runs,
+    initial_pops = initial_pops,
+    decline_risk = sum(results < initial_pops) / n_runs,
     extinction_risk = sum(results <= quasi_extinction_thresholds) / n_runs
   )
 

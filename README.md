@@ -79,6 +79,22 @@ hist(res)
 plot(res)
 ```
 
+## Run it for a single population
+```{r}
+res <- simulate_ss_pva(
+  growth_rate_means = 0.043,
+  growth_rate_vars = 0.051,
+  initial_pops = 70,
+  K = 286,
+  quasi_extinction_thresholds = 20,
+  n_years = 50,
+  n_runs = 100
+)
+
+print(res)
+hist(res)
+```
+
 ## Read the book
 If you are to use this package, I highly recommend that you first read chapter 11 from [Quantitative Conservation Ecology (Morris & Doak, 2002)](http://www.sinauer.com/quantitative-conservation-biology-theory-and-practice-of-population-viability-analysis.html), so you understand limitations and assumptions from the underlying model. Managing animal populations should not be taken lightly.
 

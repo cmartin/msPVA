@@ -96,7 +96,7 @@ test_that("Our results agree with the old R code for single-site simulations",{
       0.833333333,
       1.777777778
     ),
-    initial_pop = 136,
+    initial_pops = 136,
     n_years = 100,
     n_runs = 3000
   )
@@ -127,7 +127,7 @@ test_that("K is correctly accounted for in single-site simulations",{
       0.833333333,
       1.777777778
     ),
-    initial_pop = 136,
+    initial_pops = 136,
     n_years = 100,
     n_runs = 2000,
     K = 200
@@ -147,7 +147,7 @@ test_that("K is correctly accounted for in single-site simulations",{
       0.833333333,
       1.777777778
     ),
-    initial_pop = 136,
+    initial_pops = 136,
     n_years = 100,
     n_runs = 2000
   )
@@ -162,13 +162,13 @@ test_that("The multiple ways of calling simulate_ss_pva are correctly verified",
 
   expect_error(
     res <- simulate_ss_pva(
-      initial_pop = 20
+      initial_pops = 20
     )
   )
 
   expect_error(
     res <- simulate_ss_pva(
-      initial_pop = 20,
+      initial_pops = 20,
       lambdas = c(1,2,3),
       log_lambdas = c(1,2,3)
     )
@@ -181,7 +181,7 @@ test_that("Stochastic model for a single population",{
   res <- simulate_ss_pva(
     growth_rate_means = 0.015,
     growth_rate_vars = .041,
-    initial_pop = 26,
+    initial_pops = 26,
     quasi_extinction_thresholds = 20,
     n_years = 50,
     n_runs = 1000
@@ -205,7 +205,7 @@ test_that("Stochastic model for a single population",{
                     0.144782148474211, 0.176846281421632, -0.34330593611314, 0.337176958392917,
                     -0.178642571388776, -0.298701626025117, -0.0984130919939361,
                     -0.214594528811423, 0.431114720192186),
-    initial_pop = 26,
+    initial_pops = 26,
     quasi_extinction_thresholds = 20,
     n_years = 50,
     n_runs = 1000
