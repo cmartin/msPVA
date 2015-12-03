@@ -11,5 +11,5 @@ LazyData: TRUE
 Imports: utils
 Suggests: testthat
 Depends: R (>= 3.0.2)
-URL: https://github.com/cmartin/msPVA
+URL: https://github.com/cmartin/msPVA. DOI:10.5281/zenodo.34692
 BugReports: https://github.com/cmartin/msPVA/issues
