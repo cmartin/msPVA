@@ -1,4 +1,11 @@
-# msPVA : An R implementation of count-based multi-site population viability analysis
+---
+title: "msPVA : An R implementation of count-based multi-site population viability analysis"
+output: 
+  html_document:
+    highlight: haddock
+    keep_md: yes
+    theme: readable
+---
 
 This package implements a stochastic simulation for a count-based multi-site population viability analysis as described in chapter 11 of Quantitative Conservation Ecology (Morris & Doak, 2002).
 
@@ -9,7 +16,7 @@ You have two options here.
 
 ### Install package from github.com
 This allows you to easily install updates, have access to the function help files etc.
-```{r}
+```{r eval=FALSE}
 library(devtools)
 devtools::install_github("cmartin/msPVA")
 library(msPVA)
@@ -18,7 +25,7 @@ library(msPVA)
 ### Or you download the source file and run it directly
 In this case, you need download [the raw R file](https://raw.githubusercontent.com/cmartin/msPVA/master/R/MultisitePVA.R)
 and then execute : 
-```{r}
+```{r eval=FALSE}
 source("MultisitePVA.R")
 ```
 This is a quicker, but dirtier way!
@@ -28,7 +35,8 @@ This is a quicker, but dirtier way!
 With the same Clapper rail data as in Morris & Doak
 
 ### Definining parameters manually : 
-```{r}
+```{r comment=NA}
+library(msPVA)
 res <- simulate_ms_pva(
  leaving_prob = 0.2,
  reaching_prob = 0.5,
@@ -46,7 +54,8 @@ res <- simulate_ms_pva(
  K = c(286, 60, 58),
  quasi_extinction_thresholds = c(20, 20, 20),
  n_years = 100,
- n_runs = 1000
+ n_runs = 1000,
+ with_progress_bar = FALSE 
 )
 
 print(res)
@@ -56,7 +65,8 @@ plot(res)
 
 ### Or ask the package to calculate most of them automatically from a time-series : 
 With a two-populations polar bear time series from [Stirling et al. 2004](http://arctic.journalhosting.ucalgary.ca/arctic/index.php/arctic/article/view/479/509)
-```{r}
+```{r comment=NA}
+library(msPVA)
 params <- calculate_params_from_file(
  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
 )
@@ -70,7 +80,8 @@ res <- do.call(
      reaching_prob = 0.7,
      quasi_extinction_thresholds = c(20, 20),
      n_years = 100,
-     n_runs = 1000
+     n_runs = 1000,
+     with_progress_bar = FALSE 
    )
  )
 )
@@ -80,7 +91,8 @@ plot(res)
 ```
 
 ## Run it for a single population
-```{r}
+```{r comment=NA}
+library(msPVA)
 res <- simulate_ss_pva(
   growth_rate_means = 0.043,
   growth_rate_vars = 0.051,
@@ -88,7 +100,8 @@ res <- simulate_ss_pva(
   K = 286,
   quasi_extinction_thresholds = 20,
   n_years = 50,
-  n_runs = 100
+  n_runs = 100,
+  with_progress_bar = FALSE 
 )
 
 print(res)
@@ -103,5 +116,6 @@ Please report any bugs to the [GitHub issue tracker](https://github.com/cmartin/
 
 ## Citation
 If this code is useful to you, please cite as : 
-Charles A. Martin (2015). msPVA: Count-Based Multi-Site Population Viability Analysis. R package
-  version 0.0.0.9001.
+```{r echo=FALSE, comment=NA}
+cat(citation("msPVA")$textVersion)
+```
