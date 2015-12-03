@@ -13,30 +13,7 @@
 #' @param quasi_extinction_thresholds A vector of near extinction threshold for each pops.
 #' @return A list-based S3 object of class \code{msPVARes} containing elements CDFExt, lam0, logLam and stochLam.
 #' @export
-#' @examples
-#' res <- simulate_ms_pva(
-#'  leaving_prob = 0.2,
-#'  reaching_prob = 0.5,
-#'  growth_rate_means = c(0.043, -0.002, 0),
-#'  growth_rate_vars = c(0.051, 0.041, 0.051),
-#'  initial_pops = c(70, 26, 33),
-#'  growth_rate_corrs = {matrix(
-#'    c(	1.000,	0.995,   0.896,
-#'    0.995,	1.000,   0.938,
-#'    0.896,	0.938,   1.000),
-#'    nrow = 3,
-#'    ncol = 3,
-#'    byrow = TRUE
-#'  )},
-#'  K = c(286, 60, 58),
-#'  quasi_extinction_thresholds = c(20, 20, 20),
-#'  n_years = 50,
-#'  n_runs = 100
-#' )
-#'
-#' print(res)
-#' hist(res)
-#' plot(res)
+#' @example /inst/examples/ms.Example.R
 simulate_ms_pva <- function(
   n_years = 100,
   n_runs = 1000,
@@ -212,24 +189,7 @@ hist.msPVARes <- function(x, ...) {
 #' @return A \code{list} containing initial_pops, growth_rate_corrs,
 #' growth_rate_means and growth_rate_vars parameters. Please see \link{simulate_ms_pva} for a description of each parameter
 #' @export
-#' @examples
-#' params <- calculate_params_from_file(
-#'  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
-#' )
-#' do.call(
-#'  "simulate_ms_pva",
-#'  c(
-#'    params,
-#'    list(
-#'      K = c(300,200),
-#'      leaving_prob = 0.1,
-#'      reaching_prob = 0.7,
-#'      quasi_extinction_thresholds = c(20, 20),
-#'      n_years = 50,
-#'      n_runs = 100
-#'    )
-#'  )
-#' )
+#' @example /inst/examples/params.Example.R
 calculate_params_from_file <- function(data_file) {
   df <- read.csv(
     data_file,
@@ -307,19 +267,7 @@ calculate_params_from_file <- function(data_file) {
 #' @param quasi_extinction_thresholds A number. Near extinction threshold for the population.
 #' @return A list-based S3 object of class \code{ssPVARes} containing elements final_pops (vector), n_years, n_runs, initial_pops, decline_risk and extinction_risk.
 #' @export
-#' @examples
-#' res <- simulate_ss_pva(
-#'  growth_rate_means = 0.043,
-#'  growth_rate_vars = 0.051,
-#'  initial_pops = 70,
-#'  K = 286,
-#'  quasi_extinction_thresholds = 20,
-#'  n_years = 50,
-#'  n_runs = 100
-#' )
-#'
-#' print(res)
-#' hist(res)
+#' @example /inst/examples/ss.Example.R
 #' @export
 simulate_ss_pva <- function(
   initial_pops,

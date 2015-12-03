@@ -35,6 +35,8 @@ are provided, or a bootstrap method if lambdas are provided directly.
 This function is not yet vectorized, so provided a single population per run.
 }
 \examples{
+## @knitr ssExample
+
 res <- simulate_ss_pva(
  growth_rate_means = 0.043,
  growth_rate_vars = 0.051,

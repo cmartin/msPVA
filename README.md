@@ -31,8 +31,8 @@ With the same Clapper rail data as in Morris & Doak
 
 ### Definining parameters manually : 
 
+
 ```r
-library(msPVA)
 res <- simulate_ms_pva(
  leaving_prob = 0.2,
  reaching_prob = 0.5,
@@ -49,9 +49,10 @@ res <- simulate_ms_pva(
  )},
  K = c(286, 60, 58),
  quasi_extinction_thresholds = c(20, 20, 20),
- n_years = 100,
- n_runs = 1000,
- with_progress_bar = FALSE 
+ n_years = 50,
+ n_runs = 100,
+ with_progress_bar = FALSE
+
 )
 
 print(res)
@@ -59,28 +60,27 @@ print(res)
 
 ```
 This is the deterministic lambda value :  1.0319573564599
-And this is the mean stochastic lambda :  0.998326502312961
+And this is the mean stochastic lambda :  0.999309977500764
 Below is mean and standard deviation of log lambda :
--0.00170197441398923 0.00737528068961553
+-0.000767636054482453 0.0125339452683634
 ```
 
 ```r
 hist(res)
 ```
 
-![](README_files/figure-html/unnamed-chunk-3-1.png) 
+![](README_files/figure-html/msExample-1.png) 
 
 ```r
 plot(res)
 ```
 
-![](README_files/figure-html/unnamed-chunk-3-2.png) 
+![](README_files/figure-html/msExample-2.png) 
 
 ### Or ask the package to calculate most of them automatically from a time-series : 
 With a two-populations polar bear time series from [Stirling et al. 2004](http://arctic.journalhosting.ucalgary.ca/arctic/index.php/arctic/article/view/479/509)
 
 ```r
-library(msPVA)
 params <- calculate_params_from_file(
  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
 )
@@ -93,7 +93,7 @@ Warning in calculate_params_from_file(system.file("extdata", "PolarBear_Stirling
 ```
 
 ```r
-res <- do.call(
+do.call(
  "simulate_ms_pva",
  c(
    params,
@@ -102,62 +102,47 @@ res <- do.call(
      leaving_prob = 0.1,
      reaching_prob = 0.7,
      quasi_extinction_thresholds = c(20, 20),
-     n_years = 100,
-     n_runs = 1000,
-     with_progress_bar = FALSE 
+     n_years = 50,
+     n_runs = 100,
+     with_progress_bar = FALSE
    )
  )
 )
-print(res)
 ```
 
 ```
 This is the deterministic lambda value :  1.05786392886293
-And this is the mean stochastic lambda :  0.994891450195734
+And this is the mean stochastic lambda :  0.989637281062268
 Below is mean and standard deviation of log lambda :
--0.00513613229713802 0.00539279087662938
+-0.0104803190936751 0.011354048683767
 ```
-
-```r
-hist(res)
-```
-
-![](README_files/figure-html/unnamed-chunk-4-1.png) 
-
-```r
-plot(res)
-```
-
-![](README_files/figure-html/unnamed-chunk-4-2.png) 
 
 ## Run it for a single population
 
 ```r
-library(msPVA)
 res <- simulate_ss_pva(
-  growth_rate_means = 0.043,
-  growth_rate_vars = 0.051,
-  initial_pops = 70,
-  K = 286,
-  quasi_extinction_thresholds = 20,
-  n_years = 50,
-  n_runs = 100,
-  with_progress_bar = FALSE 
+ growth_rate_means = 0.043,
+ growth_rate_vars = 0.051,
+ initial_pops = 70,
+ K = 286,
+ quasi_extinction_thresholds = 20,
+ n_years = 50,
+ n_runs = 100
 )
 
 print(res)
 ```
 
 ```
-Over a 50 years span, the extinction risk of this population is 0.1
-And the risk of decline is 0.17
+Over a 50 years span, the extinction risk of this population is 0.15
+And the risk of decline is 0.22
 ```
 
 ```r
 hist(res)
 ```
 
-![](README_files/figure-html/unnamed-chunk-5-1.png) 
+![](README_files/figure-html/ssExample-1.png) 
 
 ## Read the book
 If you are to use this package, I highly recommend that you first read chapter 11 from [Quantitative Conservation Ecology (Morris & Doak, 2002)](http://www.sinauer.com/quantitative-conservation-biology-theory-and-practice-of-population-viability-analysis.html), so you understand limitations and assumptions from the underlying model. Managing animal populations should not be taken lightly.

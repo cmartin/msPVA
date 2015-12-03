@@ -37,6 +37,8 @@ A list-based S3 object of class \code{msPVARes} containing elements CDFExt, lam0
 See Morris & Doak 2002, p. 423-431
 }
 \examples{
+## @knitr msExample
+
 res <- simulate_ms_pva(
  leaving_prob = 0.2,
  reaching_prob = 0.5,
@@ -54,7 +56,9 @@ res <- simulate_ms_pva(
  K = c(286, 60, 58),
  quasi_extinction_thresholds = c(20, 20, 20),
  n_years = 50,
- n_runs = 100
+ n_runs = 100,
+ with_progress_bar = FALSE
+
 )
 
 print(res)
