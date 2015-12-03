@@ -292,29 +292,46 @@ calculate_params_from_file <- function(data_file) {
 
 #' @export
 simulate_ss_pva <- function(
-  lambdas,
-  log_lambdas,
-  growth_rate_means,
-  growth_rate_vars = 0 ,
   initial_pop,
   n_years = 100,
   n_runs = 1000,
   K = NA,
-  quasi_extinction_thresholds = 0
+  quasi_extinction_thresholds = 0,
+  ...
+#   lambdas = NULL,
+#   log_lambdas = NULL,
+#   growth_rate_means = NULL
+
 ) {
 
+  args = list(...)
+
   if (sum(
-    missing(lambdas),
-    missing(log_lambdas),
-    missing(growth_rate_means)
+    is.null(args$lambdas),
+    is.null(args$log_lambdas),
+    is.null(args$growth_rate_means)
   ) != 2) {
     stop("You must provide either lambdas, log-lambdas or growth-rate means and variances, but only one of them")
   }
 
-  if (missing(lambdas)) {
-    method = 'stochastic'
+  if (is.null(args$lambdas)) {
+    method <- 'stochastic'
+
+    if (is.null(args$growth_rate_means)) {
+      growth_rate_means <- mean(args$log_lambdas)
+      growth_rate_vars <- var(args$log_lambdas)
+    } else {
+      if (is.null(args$growth_rate_vars)) {
+        stop("You must also provide growth rate variances (growth_rate_vars argument)")
+      }
+      growth_rate_means <- args$growth_rate_means
+      growth_rate_vars <- args$growth_rate_vars
+    }
+
   } else {
-    method = 'bootstrap'
+
+    method <- 'bootstrap'
+    lambdas <- args$lambdas
   }
 
   results = c()

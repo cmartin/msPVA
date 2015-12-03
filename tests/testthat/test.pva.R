@@ -112,7 +112,7 @@ test_that("Our results agree with the old R code for single-site simulations",{
   expect_equal(
     res$extinction_risk,
     c(0.24153),
-    tolerance = .04
+    tolerance = .06
   )
 
 })
@@ -193,7 +193,28 @@ test_that("Stochastic model for a single population",{
   expect_equal(
     res$extinction_risk,
     0.7624,
-    tolerance = .03
+    tolerance = .05
+  )
+
+  # x <- rnorm(n = 20, mean = 0.015, sd = sqrt(0.041))
+
+  res <- simulate_ss_pva(
+    log_lambdas = c(-0.0503626618483076, -0.0316522478682412, -0.205890697055539,
+                    -0.0407897021414208, 0.151024474883104, -0.141017433696716, 0.105149579850484,
+                    0.104087724782143, 0.18297223483855, -0.0114362475217544, 0.358832191971109,
+                    0.144782148474211, 0.176846281421632, -0.34330593611314, 0.337176958392917,
+                    -0.178642571388776, -0.298701626025117, -0.0984130919939361,
+                    -0.214594528811423, 0.431114720192186),
+    initial_pop = 26,
+    quasi_extinction_thresholds = 20,
+    n_years = 50,
+    n_runs = 1000
+  )
+
+  expect_equal(
+    res$extinction_risk,
+    0.7624,
+    tolerance = .04
   )
 
 })
