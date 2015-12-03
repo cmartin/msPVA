@@ -1,4 +1,5 @@
 # msPVA : An R implementation of count-based multi-site population viability analysis
+[![DOI](https://zenodo.org/badge/19481/cmartin/msPVA.svg)](https://zenodo.org/badge/latestdoi/19481/cmartin/msPVA)
 
 This package implements a stochastic simulation for a count-based multi-site population viability analysis as described in chapter 11 of Quantitative Conservation Ecology (Morris & Doak, 2002).
 
@@ -60,9 +61,9 @@ print(res)
 
 ```
 This is the deterministic lambda value :  1.0319573564599
-And this is the mean stochastic lambda :  0.999309977500764
+And this is the mean stochastic lambda :  0.996196618565513
 Below is mean and standard deviation of log lambda :
--0.000767636054482453 0.0125339452683634
+-0.00386713471015602 0.0107023456835744
 ```
 
 ```r
@@ -112,9 +113,9 @@ do.call(
 
 ```
 This is the deterministic lambda value :  1.05786392886293
-And this is the mean stochastic lambda :  0.989637281062268
+And this is the mean stochastic lambda :  0.991390195656654
 Below is mean and standard deviation of log lambda :
--0.0104803190936751 0.011354048683767
+-0.00869566903288304 0.00993047164525404
 ```
 
 ## Run it for a single population
@@ -134,8 +135,8 @@ print(res)
 ```
 
 ```
-Over a 50 years span, the extinction risk of this population is 0.15
-And the risk of decline is 0.22
+Over a 50 years span, the extinction risk of this population is 0.1
+And the risk of decline is 0.17
 ```
 
 ```r
@@ -152,6 +153,9 @@ Please report any bugs to the [GitHub issue tracker](https://github.com/cmartin/
 
 ## Citation
 If this code is useful to you, please cite as : 
+
+[![DOI](https://zenodo.org/badge/19481/cmartin/msPVA.svg)](https://zenodo.org/badge/latestdoi/19481/cmartin/msPVA)
+
 
 ```
 Charles A. Martin (2015). msPVA: An R implementation of count-based multi-site population viability analysis. R package version 0.0.0.9002. https://github.com/cmartin/msPVA

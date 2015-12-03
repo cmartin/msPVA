@@ -6,6 +6,7 @@ output:
     keep_md: yes
     theme: readable
 ---
+[![DOI](https://zenodo.org/badge/19481/cmartin/msPVA.svg)](https://zenodo.org/badge/latestdoi/19481/cmartin/msPVA)
 
 This package implements a stochastic simulation for a count-based multi-site population viability analysis as described in chapter 11 of Quantitative Conservation Ecology (Morris & Doak, 2002).
 
@@ -62,6 +63,9 @@ Please report any bugs to the [GitHub issue tracker](https://github.com/cmartin/
 
 ## Citation
 If this code is useful to you, please cite as : 
+
+[![DOI](https://zenodo.org/badge/19481/cmartin/msPVA.svg)](https://zenodo.org/badge/latestdoi/19481/cmartin/msPVA)
+
 ```{r echo=FALSE, comment=NA}
 cat(citation("msPVA")$textVersion)
 ```
