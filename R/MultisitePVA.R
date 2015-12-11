@@ -11,6 +11,7 @@
 #' @param initial_pops A vector of initial population sizes.
 #' @param K A vector of maximum numbers in each pop. (carrying capacity)
 #' @param quasi_extinction_thresholds A vector of near extinction threshold for each pops.
+#' @param with_progress_bar A boolean value, to show a text-based progress bar while the simulation runs
 #' @return A list-based S3 object of class \code{msPVARes} containing elements CDFExt, lam0, logLam and stochLam.
 #' @export
 #' @example /inst/examples/ms.Example.R
@@ -257,14 +258,12 @@ calculate_params_from_file <- function(data_file) {
 #'
 #' This function is not yet vectorized, so provided a single population per run.
 #'
-#' @param lambdas A vector. Yearly growth rates
-#' @param log_lambdas A vector. log(lambdas) calculated as in Morris & Doak 2002, p.64-65
-#' @param growth_rate_means,growth_rate_vars Numbers. Mean and variance of log(lambdas)
 #' @param n_years A number. How many years should we simulate?
 #' @param n_runs A number. How many simulations should we do?
 #' @param initial_pops Number. Initial population sizes.
 #' @param K A number. Maximum population size (carrying capacity).
 #' @param quasi_extinction_thresholds A number. Near extinction threshold for the population.
+#' @param ... Either lambdas (a vector of yearly growth rates), log_lambdas (a vector of log(lambdas) calculated as in Morris & Doak 2002, p.64-65) or growth_rate_means and growth_rate_vars (Numbers: Mean and variance of log(lambdas))
 #' @return A list-based S3 object of class \code{ssPVARes} containing elements final_pops (vector), n_years, n_runs, initial_pops, decline_risk and extinction_risk.
 #' @export
 #' @example /inst/examples/ss.Example.R

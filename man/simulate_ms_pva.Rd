@@ -18,6 +18,8 @@ simulate_ms_pva(n_years = 100, n_runs = 1000, leaving_prob = 0,
 
 \item{reaching_prob}{A number. The probability of an individual reaching safely another pop.}
 
+\item{with_progress_bar}{A boolean value, to show a text-based progress bar while the simulation runs}
+
 \item{growth_rate_means}{A vector of mean log(lambdas), one for each pop.}
 
 \item{growth_rate_vars}{A vector of variance of log(lambdas), one for each pop.}

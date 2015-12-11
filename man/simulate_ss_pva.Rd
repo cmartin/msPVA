@@ -18,11 +18,7 @@ simulate_ss_pva(initial_pops, n_years = 100, n_runs = 1000, K = NA,
 
 \item{quasi_extinction_thresholds}{A number. Near extinction threshold for the population.}
 
-\item{lambdas}{A vector. Yearly growth rates}
-
-\item{log_lambdas}{A vector. log(lambdas) calculated as in Morris & Doak 2002, p.64-65}
-
-\item{growth_rate_means,growth_rate_vars}{Numbers. Mean and variance of log(lambdas)}
+\item{...}{Either lambdas (a vector of yearly growth rates), log_lambdas (a vector of log(lambdas) calculated as in Morris & Doak 2002, p.64-65) or growth_rate_means and growth_rate_vars (Numbers: Mean and variance of log(lambdas))}
 }
 \value{
 A list-based S3 object of class \code{ssPVARes} containing elements final_pops (vector), n_years, n_runs, initial_pops, decline_risk and extinction_risk.
