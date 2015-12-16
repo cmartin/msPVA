@@ -193,7 +193,7 @@ test_that("Stochastic model for a single population",{
   expect_equal(
     res$extinction_risk,
     0.7624,
-    tolerance = .05
+    tolerance = .06
   )
 
   # x <- rnorm(n = 20, mean = 0.015, sd = sqrt(0.041))

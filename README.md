@@ -1,5 +1,6 @@
 # msPVA : An R implementation of count-based multi-site population viability analysis
 [![DOI](https://zenodo.org/badge/19481/cmartin/msPVA.svg)](https://zenodo.org/badge/latestdoi/19481/cmartin/msPVA)
+[![Build Status](https://travis-ci.org/cmartin/msPVA.svg?branch=master)](https://travis-ci.org/cmartin/msPVA)
 
 This package implements a stochastic simulation for a count-based multi-site population viability analysis as described in chapter 11 of Quantitative Conservation Ecology (Morris & Doak, 2002).
 
@@ -61,9 +62,9 @@ print(res)
 
 ```
 This is the deterministic lambda value :  1.0319573564599
-And this is the mean stochastic lambda :  0.999914614380869
+And this is the mean stochastic lambda :  0.999421003284329
 Below is mean and standard deviation of log lambda :
--0.00016467362501019 0.0126959700869962
+-0.000659528776884575 0.0127702461089203
 ```
 
 ```r
@@ -113,14 +114,16 @@ do.call(
 
 ```
 This is the deterministic lambda value :  1.05786392886293
-And this is the mean stochastic lambda :  0.989359171405919
+And this is the mean stochastic lambda :  0.991052057582597
 Below is mean and standard deviation of log lambda :
--0.0107472995390947 0.0100118039947877
+-0.00903367013844554 0.00959954191957428
 ```
 
 ## Run it for a single population
 
 ```r
+# From a precalculated mean log-lambdas
+
 res <- simulate_ss_pva(
  growth_rate_means = 0.043,
  growth_rate_vars = 0.051,
@@ -135,8 +138,8 @@ print(res)
 ```
 
 ```
-Over a 50 years span, the extinction risk of this population is 0.1
-And the risk of decline is 0.23
+Over a 50 years span, the extinction risk of this population is 0.15
+And the risk of decline is 0.18
 ```
 
 ```r
@@ -144,6 +147,37 @@ hist(res)
 ```
 
 ![](README_files/figure-html/ssExample-1.png) 
+
+```r
+# From a vector of log-lambdas
+res <- simulate_ss_pva(
+  log_lambdas = c(-0.0503626618483076, -0.0316522478682412, -0.205890697055539,
+                  -0.0407897021414208, 0.151024474883104, -0.141017433696716, 0.105149579850484,
+                  0.104087724782143, 0.18297223483855),
+  initial_pops = 70,
+  K = 286,
+  quasi_extinction_thresholds = 20,
+  n_years = 50,
+  n_runs = 100
+)
+
+# Or from a vector of lambdas
+res <- simulate_ss_pva(
+  lambdas = c(
+    0.808510638,
+    0.828947368,
+    1,
+    1.047619048,
+    0.833333333,
+    1.777777778
+  ),
+  initial_pops = 70,
+  K = 286,
+  quasi_extinction_thresholds = 20,
+  n_years = 50,
+  n_runs = 100
+)
+```
 
 ## Read the book
 If you are to use this package, I highly recommend that you first read chapter 11 from [Quantitative Conservation Ecology (Morris & Doak, 2002)](http://www.sinauer.com/quantitative-conservation-biology-theory-and-practice-of-population-viability-analysis.html), so you understand limitations and assumptions from the underlying model. Managing animal populations should not be taken lightly.
@@ -156,5 +190,5 @@ If this code is useful to you, please cite as :
 
 
 ```
-Charles A. Martin (2015). msPVA: An R implementation of count-based multi-site population viability analysis. R package version 0.0.0.9002. https://github.com/cmartin/msPVA. DOI:10.5281/zenodo.34692
+Charles A. Martin (2015). msPVA: An R implementation of count-based multi-site population viability analysis. R package version 0.0.0.9003. https://github.com/cmartin/msPVA. DOI:10.5281/zenodo.34692
 ```
