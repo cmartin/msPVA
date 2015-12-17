@@ -3,7 +3,7 @@
 params <- calculate_params_from_file(
  system.file("extdata", "PolarBear_Stirling2004.csv", package = "msPVA")
 )
-do.call(
+res <- do.call(
  "simulate_ms_pva",
  c(
    params,
@@ -18,3 +18,4 @@ do.call(
    )
  )
 )
+print(res)

@@ -62,9 +62,9 @@ print(res)
 
 ```
 This is the deterministic lambda value :  1.0319573564599
-And this is the mean stochastic lambda :  0.999421003284329
+And this is the mean stochastic lambda :  0.999727790631239
 Below is mean and standard deviation of log lambda :
--0.000659528776884575 0.0127702461089203
+-0.000333404772698669 0.0111446731671174
 ```
 
 ```r
@@ -95,7 +95,7 @@ Warning in calculate_params_from_file(system.file("extdata", "PolarBear_Stirling
 ```
 
 ```r
-do.call(
+res <- do.call(
  "simulate_ms_pva",
  c(
    params,
@@ -110,13 +110,14 @@ do.call(
    )
  )
 )
+print(res)
 ```
 
 ```
 This is the deterministic lambda value :  1.05786392886293
-And this is the mean stochastic lambda :  0.991052057582597
+And this is the mean stochastic lambda :  0.991595625542989
 Below is mean and standard deviation of log lambda :
--0.00903367013844554 0.00959954191957428
+-0.00849107085122052 0.0101978610430018
 ```
 
 ## Run it for a single population
@@ -138,7 +139,7 @@ print(res)
 ```
 
 ```
-Over a 50 years span, the extinction risk of this population is 0.15
+Over a 50 years span, the extinction risk of this population is 0.11
 And the risk of decline is 0.18
 ```
 
