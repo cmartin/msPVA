@@ -8,6 +8,7 @@ output:
 ---
 [![DOI](https://zenodo.org/badge/19481/cmartin/msPVA.svg)](https://zenodo.org/badge/latestdoi/19481/cmartin/msPVA)
 [![Build Status](https://travis-ci.org/cmartin/msPVA.svg?branch=master)](https://travis-ci.org/cmartin/msPVA)
+[![Coverage Status](https://coveralls.io/repos/cmartin/msPVA/badge.svg?branch=master&service=github)](https://coveralls.io/github/cmartin/msPVA?branch=master)
 
 This package implements a stochastic simulation for a count-based multi-site population viability analysis as described in chapter 11 of Quantitative Conservation Ecology (Morris & Doak, 2002).
 
