@@ -1,6 +1,7 @@
 # msPVA : An R implementation of count-based multi-site population viability analysis
 [![DOI](https://zenodo.org/badge/19481/cmartin/msPVA.svg)](https://zenodo.org/badge/latestdoi/19481/cmartin/msPVA)
 [![Build Status](https://travis-ci.org/cmartin/msPVA.svg?branch=master)](https://travis-ci.org/cmartin/msPVA)
+[![Coverage Status](https://coveralls.io/repos/cmartin/msPVA/badge.svg?branch=master&service=github)](https://coveralls.io/github/cmartin/msPVA?branch=master)
 
 This package implements a stochastic simulation for a count-based multi-site population viability analysis as described in chapter 11 of Quantitative Conservation Ecology (Morris & Doak, 2002).
 
@@ -62,9 +63,9 @@ print(res)
 
 ```
 This is the deterministic lambda value :  1.0319573564599
-And this is the mean stochastic lambda :  0.999727790631239
+And this is the mean stochastic lambda :  0.998511036227947
 Below is mean and standard deviation of log lambda :
--0.000333404772698669 0.0111446731671174
+-0.0015723572160692 0.012920804009892
 ```
 
 ```r
@@ -115,9 +116,9 @@ print(res)
 
 ```
 This is the deterministic lambda value :  1.05786392886293
-And this is the mean stochastic lambda :  0.991595625542989
+And this is the mean stochastic lambda :  0.991368228851709
 Below is mean and standard deviation of log lambda :
--0.00849107085122052 0.0101978610430018
+-0.00871240945272237 0.00936009930260403
 ```
 
 ## Run it for a single population
@@ -139,8 +140,8 @@ print(res)
 ```
 
 ```
-Over a 50 years span, the extinction risk of this population is 0.11
-And the risk of decline is 0.18
+Over a 50 years span, the extinction risk of this population is 0.12
+And the risk of decline is 0.21
 ```
 
 ```r
