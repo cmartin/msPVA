@@ -11,6 +11,3 @@ before_install:
 
 install:
   - ./travis-tool.sh github_package jimhester/covr
-
-after_success:
-  - Rscript -e 'covr::coveralls()'
