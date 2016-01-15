@@ -26,20 +26,3 @@ res <- simulate_ss_pva(
   n_years = 50,
   n_runs = 100
 )
-
-# Or from a vector of lambdas
-res <- simulate_ss_pva(
-  lambdas = c(
-    0.808510638,
-    0.828947368,
-    1,
-    1.047619048,
-    0.833333333,
-    1.777777778
-  ),
-  initial_pops = 70,
-  K = 286,
-  quasi_extinction_thresholds = 20,
-  n_years = 50,
-  n_runs = 100
-)

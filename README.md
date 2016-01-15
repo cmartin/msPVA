@@ -62,9 +62,9 @@ print(res)
 
 ```
 This is the deterministic lambda value :  1.0319573564599
-And this is the mean stochastic lambda :  0.998955867409017
+And this is the mean stochastic lambda :  0.99642732192589
 Below is mean and standard deviation of log lambda :
--0.00112100921428087 0.0124708017562155
+-0.00367530129674074 0.013982886113063
 ```
 
 ```r
@@ -115,9 +115,9 @@ print(res)
 
 ```
 This is the deterministic lambda value :  1.05786392886293
-And this is the mean stochastic lambda :  0.991724571927624
+And this is the mean stochastic lambda :  0.990314335670581
 Below is mean and standard deviation of log lambda :
--0.00835792209367277 0.00986959684582943
+-0.00978931640713308 0.0107011693034957
 ```
 
 ## Run it for a single population
@@ -139,8 +139,8 @@ print(res)
 ```
 
 ```
-Over a 50 years span, the extinction risk of this population is 0.15
-And the risk of decline is 0.2
+Over a 50 years span, the extinction risk of this population is 0.1
+And the risk of decline is 0.16
 ```
 
 ```r
@@ -161,23 +161,6 @@ res <- simulate_ss_pva(
   n_years = 50,
   n_runs = 100
 )
-
-# Or from a vector of lambdas
-res <- simulate_ss_pva(
-  lambdas = c(
-    0.808510638,
-    0.828947368,
-    1,
-    1.047619048,
-    0.833333333,
-    1.777777778
-  ),
-  initial_pops = 70,
-  K = 286,
-  quasi_extinction_thresholds = 20,
-  n_years = 50,
-  n_runs = 100
-)
 ```
 
 ## Read the book
@@ -191,5 +174,6 @@ If this code is useful to you, please cite as :
 
 
 ```
-Charles A. Martin (2015). msPVA: An R implementation of count-based multi-site population viability analysis. R package version 0.0.0.9003. https://github.com/cmartin/msPVA. DOI:10.5281/zenodo.34692
+Charles A. Martin (2016). msPVA: An R implementation of count-based multi-site population viability
+analysis. R package version 0.0.0.9005. https://github.com/cmartin/msPVA. DOI:10.5281/zenodo.34692
 ```

@@ -18,17 +18,17 @@ simulate_ss_pva(initial_pops, n_years = 100, n_runs = 1000, K = NA,
 
 \item{quasi_extinction_thresholds}{A number. Near extinction threshold for the population.}
 
-\item{...}{Either lambdas (a vector of yearly growth rates), log_lambdas (a vector of log(lambdas) calculated as in Morris & Doak 2002, p.64-65) or growth_rate_means and growth_rate_vars (Numbers: Mean and variance of log(lambdas))}
+\item{...}{Either log_lambdas (a vector of log(lambdas) calculated as in Morris & Doak 2002, p.64-65) or growth_rate_means and growth_rate_vars (Numbers: Mean and variance of log(lambdas))}
 }
 \value{
 A list-based S3 object of class \code{ssPVARes} containing elements final_pops (vector), n_years, n_runs, initial_pops, decline_risk and extinction_risk.
 }
 \description{
-This function uses either a stochastic algorithm if log-lambdas or mean log-lambdas and variance
-are provided, or a bootstrap method if lambdas are provided directly.
+This function uses a stochastic algorithm if log-lambdas or mean log-lambdas and variance
+are provided.
 }
 \details{
-This function is not yet vectorized, so provided a single population per run.
+This function is not yet vectorized, so provide a single population per run.
 }
 \examples{
 ## @knitr ssExample
@@ -53,23 +53,6 @@ res <- simulate_ss_pva(
   log_lambdas = c(-0.0503626618483076, -0.0316522478682412, -0.205890697055539,
                   -0.0407897021414208, 0.151024474883104, -0.141017433696716, 0.105149579850484,
                   0.104087724782143, 0.18297223483855),
-  initial_pops = 70,
-  K = 286,
-  quasi_extinction_thresholds = 20,
-  n_years = 50,
-  n_runs = 100
-)
-
-# Or from a vector of lambdas
-res <- simulate_ss_pva(
-  lambdas = c(
-    0.808510638,
-    0.828947368,
-    1,
-    1.047619048,
-    0.833333333,
-    1.777777778
-  ),
   initial_pops = 70,
   K = 286,
   quasi_extinction_thresholds = 20,

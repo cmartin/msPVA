@@ -253,17 +253,17 @@ calculate_params_from_file <- function(data_file) {
 
 #' Run a stochastic simulation for a count-based single-site population viability analysis
 #'
-#' This function uses either a stochastic algorithm if log-lambdas or mean log-lambdas and variance
-#' are provided, or a bootstrap method if lambdas are provided directly.
+#' This function uses a stochastic algorithm if log-lambdas or mean log-lambdas and variance
+#' are provided.
 #'
-#' This function is not yet vectorized, so provided a single population per run.
+#' This function is not yet vectorized, so provide a single population per run.
 #'
 #' @param n_years A number. How many years should we simulate?
 #' @param n_runs A number. How many simulations should we do?
 #' @param initial_pops Number. Initial population sizes.
 #' @param K A number. Maximum population size (carrying capacity).
 #' @param quasi_extinction_thresholds A number. Near extinction threshold for the population.
-#' @param ... Either lambdas (a vector of yearly growth rates), log_lambdas (a vector of log(lambdas) calculated as in Morris & Doak 2002, p.64-65) or growth_rate_means and growth_rate_vars (Numbers: Mean and variance of log(lambdas))
+#' @param ... Either log_lambdas (a vector of log(lambdas) calculated as in Morris & Doak 2002, p.64-65) or growth_rate_means and growth_rate_vars (Numbers: Mean and variance of log(lambdas))
 #' @return A list-based S3 object of class \code{ssPVARes} containing elements final_pops (vector), n_years, n_runs, initial_pops, decline_risk and extinction_risk.
 #' @export
 #' @example /inst/examples/ss.Example.R
@@ -280,31 +280,21 @@ simulate_ss_pva <- function(
   args = list(...)
 
   if (sum(
-    is.null(args$lambdas),
     is.null(args$log_lambdas),
     is.null(args$growth_rate_means)
-  ) != 2) {
-    stop("You must provide either lambdas, log-lambdas or growth-rate means and variances, but only one of them")
+  ) != 1) {
+    stop("You must provide either log-lambdas or growth-rate means and variances, but only one of them")
   }
 
-  if (is.null(args$lambdas)) {
-    method <- 'stochastic'
-
-    if (is.null(args$growth_rate_means)) {
-      growth_rate_means <- mean(args$log_lambdas)
-      growth_rate_vars <- var(args$log_lambdas)
-    } else {
-      if (is.null(args$growth_rate_vars)) {
-        stop("You must also provide growth rate variances (growth_rate_vars argument)")
-      }
-      growth_rate_means <- args$growth_rate_means
-      growth_rate_vars <- args$growth_rate_vars
-    }
-
+  if (is.null(args$growth_rate_means)) {
+    growth_rate_means <- mean(args$log_lambdas)
+    growth_rate_vars <- var(args$log_lambdas)
   } else {
-
-    method <- 'bootstrap'
-    lambdas <- args$lambdas
+    if (is.null(args$growth_rate_vars)) {
+      stop("You must also provide growth rate variances (growth_rate_vars argument)")
+    }
+    growth_rate_means <- args$growth_rate_means
+    growth_rate_vars <- args$growth_rate_vars
   }
 
   results = c()
@@ -312,11 +302,7 @@ simulate_ss_pva <- function(
   for (iteration in 1:n_runs) {
     population = initial_pops
     for (year in 1:n_years) {
-      if (method == 'bootstrap') {
-        population = population*sample(lambdas,1)
-      } else {
-        population <- population * exp(rnorm(n = 1, mean = growth_rate_means, sd = sqrt(growth_rate_vars)))
-      }
+      population <- population * exp(rnorm(n = 1, mean = growth_rate_means, sd = sqrt(growth_rate_vars)))
 
       population = floor(population)
 
@@ -326,8 +312,6 @@ simulate_ss_pva <- function(
       if (population < quasi_extinction_thresholds) {
         break;
       }
-
-
 
     }
     results = append(results,population)
